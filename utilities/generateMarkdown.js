@@ -1,5 +1,3 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
 function renderLicenseBadge(license) {
   let licenseBadge = '';
 
@@ -27,8 +25,6 @@ function renderLicenseBadge(license) {
   }
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
 function renderLicenseLink(license) {
   let licenseLink = '';
 
@@ -56,10 +52,8 @@ function renderLicenseLink(license) {
   }
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
 function renderLicenseSection(license) {
-  let licenseLink = renderLicenseLink(license);
+  const licenseLink = renderLicenseLink(license);
 
   if (license !== 'NONE') {
     let licenseSection = `## License
@@ -77,7 +71,7 @@ function renderLicenseSection(license) {
   }
 }
 
-renderLicenseTOC = license => {
+const renderLicenseTOC = license => {
   if (license !== 'NONE') {
     let licenseTOC = `- [License](#license)`
 
@@ -91,15 +85,11 @@ renderLicenseTOC = license => {
 
 function generateMarkdown(data) {
   const license = data.selectedLicense;
-  let licenseBadge = renderLicenseBadge(license);
-  let licenseSection = renderLicenseSection(license);
-  let licenseTOC = renderLicenseTOC(license);
+  const licenseBadge = renderLicenseBadge(license);
+  const licenseSection = renderLicenseSection(license);
+  const licenseTOC = renderLicenseTOC(license);
   
-
-
-  console.log(`\n ${licenseSection} \n`)
-
-  return `# ${data.title}
+  return `# ${data.projectName}
 
   ${licenseBadge}
 
@@ -112,28 +102,34 @@ ${data.projectDescription}
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributor](#contributor)
+- [Contributing](#contributing)
 ${licenseTOC}
 
 
-## To install the necessary dependencies, run the following command:
+## Installation
 
-${data.installDependencies}
+To install the necessary dependencies, run the following command:
+
+- ${data.installDependencies}
 
 ## Usage
 
-  ${data.usageNote}
+- ${data.usageNote}
 
-## Contributor 
+## Contributing 
 
-  ${data.contributionNote}
+- ${data.contributionNote}
 
 ${licenseSection}
 ## Tests
 
 To run tests, run the following command:
 
-  ${data.testDependencies}
+- ${data.testDependencies}
+
+## Questions
+
+  If you have any questions about the repo, open an issue or contact me directly at <span style="color:blue"> ${data.email}</span>. You can find more of my work at [${data.githubUsername}](https://github.com/${data.githubUsername}).
 
 `;
 }
