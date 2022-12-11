@@ -60,7 +60,7 @@ inquirer
         questions
     )
     .then(response => {
-        console.log(`Success! ${JSON.stringify(response)}`)
+        console.log(`Success! ${JSON.stringify(response)} \n`)
         generateMarkdown(response);
     });
 

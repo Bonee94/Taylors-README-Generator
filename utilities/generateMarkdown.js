@@ -1,9 +1,13 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
-  
+  let licenseBadge = '';
+  console.log(`\n License Badge is being rendered \n ${license} \n`)
+
   if (license === 'MIT') {
     licenseBadge = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+
+    console.log(`\n License Logic triggered \n ${licenseBadge} \n`)
 
     return licenseBadge
   } else if (license === 'APACHE 2.0') {
@@ -22,28 +26,60 @@ function renderLicenseBadge(license) {
     return licenseBadge
 
   } else if (license === 'NONE') {
-    licenseBadge = '';
-
     return licenseBadge
-
   }
-   
 }
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) {}
+function renderLicenseLink(license) {
+  let licenseLink = '';
+
+  if (license === 'MIT') {
+    licenseLink = "https://www.mit.edu/~amini/LICENSE.md";
+
+    return licenseLink
+  } else if (license === 'APACHE 2.0') {
+    licenseLink = 'https://www.apache.org/licenses/LICENSE-2.0.txt';
+
+    return licenseLink
+
+  } else if (license === 'GPL 3.0') {
+    licenseLink = 'https://www.gnu.org/licenses/gpl-3.0.txt';
+
+    return licenseLink
+
+  } else if (license === 'BSD 3') {
+    licenseLink = 'https://opensource.org/licenses/BSD-3-Clause';
+
+    return licenseLink
+
+  } else if (license === 'NONE') {
+    return licenseLink
+  }
+}
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(license) {}
+function renderLicenseSection(license) {
 
-// TODO: Create a function to generate markdown for README
+  let licenseSection = `## License
+
+  - This project is licensed under the ${license} License.
+
+  `;
+  console.log(licenseSection);
+
+  return licenseSection
+}
+
 function generateMarkdown(data) {
   const license = data.selectedLicense;
-  renderLicenseBadge(license)
+  let licenseBadge = renderLicenseBadge(license);
+  let licenseSection = renderLicenseSection(license);
+  let licenseLink = renderLicenseLink(license);
 
-  console.log(licenseBadge)
+
   return `# ${data.title}
 
   ${licenseBadge}
@@ -73,10 +109,7 @@ ${data.installDependencies}
 
   ${data.contributionNote}
 
-## License
-
-  ${license}
-
+${licenseSection}
 ## Tests
 
 To run tests, run the following command:
