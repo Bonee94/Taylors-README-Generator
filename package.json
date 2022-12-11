@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Bonee94/Taylors-README-Generator#readme",
   "dependencies": {
+    "fs": "^0.0.1-security",
     "inquirer": "^8.2.4"
   }
 }
