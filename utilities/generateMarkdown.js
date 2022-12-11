@@ -2,12 +2,9 @@
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
   let licenseBadge = '';
-  console.log(`\n License Badge is being rendered \n ${license} \n`)
 
   if (license === 'MIT') {
     licenseBadge = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
-
-    console.log(`\n License Logic triggered \n ${licenseBadge} \n`)
 
     return licenseBadge
   } else if (license === 'APACHE 2.0') {
@@ -62,23 +59,45 @@ function renderLicenseLink(license) {
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
+  let licenseLink = renderLicenseLink(license);
 
-  let licenseSection = `## License
+  if (license !== 'NONE') {
+    let licenseSection = `## License
 
   - This project is licensed under the ${license} License.
+  - ${licenseLink}
 
-  `;
-  console.log(licenseSection);
+  `
 
-  return licenseSection
+    return licenseSection
+  } else {
+    let licenseSection = '';
+
+    return licenseSection
+  }
+}
+
+renderLicenseTOC = license => {
+  if (license !== 'NONE') {
+    let licenseTOC = `- [License](#license)`
+
+    return licenseTOC
+  } else {
+    let licenseTOC = '';
+
+    return licenseTOC
+  }
 }
 
 function generateMarkdown(data) {
   const license = data.selectedLicense;
   let licenseBadge = renderLicenseBadge(license);
   let licenseSection = renderLicenseSection(license);
-  let licenseLink = renderLicenseLink(license);
+  let licenseTOC = renderLicenseTOC(license);
+  
 
+
+  console.log(`\n ${licenseSection} \n`)
 
   return `# ${data.title}
 
@@ -87,14 +106,14 @@ function generateMarkdown(data) {
 
 ## Description
 
-${data.projectDescription}}
+${data.projectDescription}
 
 ## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributor](#contributor)
-- [License](#license)
+${licenseTOC}
 
 
 ## To install the necessary dependencies, run the following command:
