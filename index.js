@@ -65,16 +65,14 @@ function generateREADME() {
         });
 }
 
-// TODO: Create a function to write README file
 function writeToFile(data) {
     fs.writeFile("README.md", data, (err) =>
     err ? console.log(err) : console.log('\x1B[96mGenerating \x1B[31mR\x1B[33mE\x1B[34mA\x1B[95mD\x1B[97mM\x1B[96mE...')
     )};
 
-// TODO: Create a function to initialize app
 function init() {
     generateREADME();
 }
 
-// Function call to initialize app
+
 init();
